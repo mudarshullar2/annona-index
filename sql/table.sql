@@ -1,0 +1,21 @@
+create table supplier_lead_time_datasource (
+    record_id varchar(200),
+    supplier_id varchar(200),
+    supplier_name varchar(200),
+    item_id varchar(200),
+    item_description varchar(200),
+    purchase_order_id varchar(200),
+    order_date varchar(20),
+    promised_delivery_date varchar(20),
+    actual_delivery_date varchar(20),
+    promised_lead_time_days bigint,
+    actual_lead_time_days bigint,
+    lead_time_variance_days bigint,
+    quantity_ordered bigint,
+    quantity_received bigint,
+    on_time_delivery varchar(10),
+    lead_reason varchar(200),
+    order_status varchar(200),
+    buyer_id varchar(200),
+    buyer_name varchar(200)
+);
