@@ -1,4 +1,4 @@
-,record_id,supplier_id,supplier_name,item_id,item_description,purcahase_order_id,order_date,promised_delivery_date,actual_delivery_date,promised_lead_time_days,actual_lead_time_days,lead_time_variance_days,quantity_ordered,quantity_received,on_time_delivery,lead_reason,order_status,buyer_id,buyer_name
+,record_id,supplier_id,supplier_name,item_id,item_description,purchase_order_id,order_date,promised_delivery_date,actual_delivery_date,promised_lead_time_days,actual_lead_time_days,lead_time_variance_days,quantity_ordered,quantity_received,on_time_delivery,lead_reason,order_status,buyer_id,buyer_name
 0,REC-000001,SUP-014,Ironclad Metals,ITM-0027,Solenoid Valve 24V,PO-100000,10.03.2024,03.04.2024,01.04.2024,24,22,-2,1533,1533,true,On time,delivered,BUY-09,Mei Chen
 1,REC-000002,SUP-024,Vertex Adhesives,ITM-0025,Caster Wheel 100mm,PO-100001,15.05.2026,21.05.2026,22.05.2026,6,7,1,437,437,false,production backlog,delivered,BUY-04,Tom Becker
 2,REC-000003,SUP-002,Meridian Logistics,ITM-0012,Capacitor 470uF 25V,PO-100002,15.09.2024,27.10.2024,31.10.2024,42,46,4,261,261,false,weather disruption,delivered,BUY-11,Nina Petrova
