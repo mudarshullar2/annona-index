@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "lakehouse-adf-ms01"
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "lakehouse-sql-ms01.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "lakehouse-db"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/mudarshullar2/annona-index/main/data-source/"
+		}
+	}
+}
