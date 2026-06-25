@@ -82,7 +82,10 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "supplier_lead_time_datasource"
+			"table": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

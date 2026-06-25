@@ -123,6 +123,8 @@
 			{
 				"name": "copy_incremental_data",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "last_load",
@@ -148,7 +150,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * \nfrom supplier_lead_time_datasource\nwhere load_id > '@{activity('last_load').output.firstRow.last_load}'\nand load_id <= '@{activity('current_load').output.firstRow.max_id}'",
+						"sqlReaderQuery": {
+							"value": "select * \nfrom supplier_lead_time_datasource\nwhere load_id > '@{activity('last_load').output.firstRow.last_load}'\nand load_id <= '@{activity('current_load').output.firstRow.max_id}'",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
