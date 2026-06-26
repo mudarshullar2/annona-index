@@ -16,3 +16,10 @@ values (1);
 select * from watermark_table;
 
 select max(load_id) as max_id from supplier_lead_time_datasource;
+
+-- update watermark procedure
+create procedure UpdateWaterMarkTable @lastload int
+as
+begin
+    update watermark_table set last_load = @lastload;
+end

@@ -13,3 +13,7 @@ output "data_factory_name" {
 output "sql_server_fqdn" {
   value = azurerm_mssql_server.sql.fully_qualified_domain_name
 }
+
+output "access_connector_id" {
+  value = azurerm_databricks_access_connector.ac.id
+}
