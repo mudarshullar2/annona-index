@@ -39,7 +39,7 @@ variable "tags" {
   description = "Tags applied to every resource"
   type        = map(string)
   default = {
-    project = "azure-e2e-lakehouse"
+    project = "annona-index"
     managed = "terraform"
   }
 }
@@ -48,4 +48,12 @@ variable "name_suffix" {
   description = "Short unique suffix for globally-unique resource names"
   type        = string
   default     = "ms01"
+}
+
+variable "databricks_account_id" {
+  type = string
+}
+
+variable "azure_tenant_id" {
+  type = string
 }
