@@ -1,6 +1,8 @@
 # Databricks notebook source
 # MAGIC %sql
-# MAGIC create or replace function suppliers_catalog.gold.get_supplier_index(supplier_query string)
+# MAGIC create or replace function suppliers_catalog.gold.get_supplier_index(
+# MAGIC     supplier_query string comment 'supplier id or name to look up'
+# MAGIC )
 # MAGIC returns table (
 # MAGIC     supplier_id string,
 # MAGIC     supplier_name string,
@@ -11,7 +13,7 @@
 # MAGIC     fill_rate_pts double,
 # MAGIC     cancel_rate_pts double
 # MAGIC )
-# MAGIC comment 'Returns the supplier performance index and contributing factor points, matched by supplier id or name.'
+# MAGIC comment 'Supplier performance index (0-100) and per-factor point contributions.'
 # MAGIC return 
 # MAGIC     select
 # MAGIC         supplier_id,
@@ -64,16 +66,19 @@ print("langchain-core", m.version("langchain-core"))
 # MAGIC ).tools
 # MAGIC
 # MAGIC SYSTEM = (
-# MAGIC     "You answer questions about supplier performance. "
-# MAGIC     "ALWAYS call get_supplier_index. Report the index (0-100) and explain it using the factor points. "
-# MAGIC     "Translate the raw factor names into plain business language: "
-# MAGIC     "on_time_rate_pts = 'on-time delivery', "
-# MAGIC     "avg_lead_variance_pts = 'lead-time reliability', "
-# MAGIC     "lead_variance_std_pts = 'delivery consistency', "
-# MAGIC     "fill_rate_pts = 'order fill rate', "
-# MAGIC     "cancel_rate_pts = 'order cancellations'. "
-# MAGIC     "Name the strongest and weakest factor using these friendly names, and don't show the raw column names or the word 'pts'. "
-# MAGIC     "Never invent numbers. If no supplier matches, say so."
+# MAGIC     "You answer supplier performance questions. ALWAYS call get_supplier_index. "
+# MAGIC     "The index is 0-100. The factor point columns and their MAX possible points are: "
+# MAGIC     "on_time_rate_pts (max 35) = on-time delivery; "
+# MAGIC     "avg_lead_variance_pts (max 25) = lead-time accuracy; "
+# MAGIC     "lead_variance_std_pts (max 15) = delivery consistency; "
+# MAGIC     "fill_rate_pts (max 15) = order fill rate; "
+# MAGIC     "cancel_rate_pts (max 10) = order reliability (avoiding cancellations). "
+# MAGIC     "A factor needs improvement when its points are low relative to its max (below ~half). "
+# MAGIC     "Rules: "
+# MAGIC     "If the index is 60 or below, reply with the index and rating, then list ONLY the areas that need improvement, in plain language. "
+# MAGIC     "If the index is above 60, reply with the index and rating, briefly note what the supplier does well (factors near their max), AND list any remaining areas to improve. "
+# MAGIC     "Keep it to 2-3 short sentences, plain business language, no column names, no raw point numbers. "
+# MAGIC     "If no supplier matches, say so in one sentence."
 # MAGIC )
 # MAGIC
 # MAGIC graph = create_react_agent(llm, tools, prompt=SYSTEM)
@@ -126,6 +131,7 @@ with mlflow.start_run():
 
 # COMMAND ----------
 
+# deploying
 from databricks import agents
 agents.deploy(UC_MODEL, info.registered_model_version)
 
