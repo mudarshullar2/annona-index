@@ -43,13 +43,6 @@
 
 # COMMAND ----------
 
-import importlib.metadata as m
-print("langgraph", m.version("langgraph"))
-print("langgraph-prebuilt", m.version("langgraph-prebuilt"))
-print("langchain-core", m.version("langchain-core"))
-
-# COMMAND ----------
-
 # MAGIC %%writefile agent.py
 # MAGIC import mlflow
 # MAGIC from typing import Any, Optional
@@ -99,12 +92,17 @@ print("langchain-core", m.version("langchain-core"))
 
 # COMMAND ----------
 
-from agent import AGENT
-from mlflow.types.agent import ChatAgentMessage
+#from agent import AGENT
+#from mlflow.types.agent import ChatAgentMessage
 
 # testing the agent before deploying
-r = AGENT.predict([ChatAgentMessage(role="user", content="How is Vertex Adhesives performing?", id="1")])
-print(r.messages[-1].content)
+#r = AGENT.predict([ChatAgentMessage(role="user", content="How is Vertex Adhesives performing?", id="1")])
+#print(r.messages[-1].content)
+
+# COMMAND ----------
+
+# MAGIC %pip install -U -qqqq databricks-langchain "langgraph==0.6.7" "langgraph-prebuilt==0.6.4" databricks-agents mlflow
+# MAGIC dbutils.library.restartPython()
 
 # COMMAND ----------
 

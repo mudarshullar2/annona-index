@@ -1,0 +1,33 @@
+resources:
+  jobs:
+    annona_index_job:
+      name: annona-index-job
+      tasks:
+        - task_key: db_notebook
+          notebook_task:
+            notebook_path: /Workspace/Users/mudarshullar22_gmail.com#ext#@mudarshullar22gmail.onmicrosoft.com/db_notebook
+            source: WORKSPACE
+        - task_key: bronze_notebook
+          depends_on:
+            - task_key: db_notebook
+          notebook_task:
+            notebook_path: /Workspace/Users/mudarshullar22_gmail.com#ext#@mudarshullar22gmail.onmicrosoft.com/bronze_notebook
+            source: WORKSPACE
+        - task_key: silver_noteboo
+          depends_on:
+            - task_key: bronze_notebook
+          notebook_task:
+            notebook_path: /Workspace/Users/mudarshullar22_gmail.com#ext#@mudarshullar22gmail.onmicrosoft.com/bronze_notebook
+            source: WORKSPACE
+        - task_key: gold_notebook
+          depends_on:
+            - task_key: silver_noteboo
+          notebook_task:
+            notebook_path: /Workspace/Users/mudarshullar22_gmail.com#ext#@mudarshullar22gmail.onmicrosoft.com/agent_gold_notebook
+            source: WORKSPACE
+      queue:
+        enabled: true
+      parameters:
+        - name: incremental_flag
+          default: "1"
+      performance_target: PERFORMANCE_OPTIMIZED
