@@ -5,7 +5,7 @@ Supplier purchase order data lands in Azure SQL DB, is ingested into Databricks 
 
 An AI agent (Databricks model serving) sits on top of the gold table. It identifies a supplier from a question, looks up the index and its contributing factors, and replies in plain language. A slack bot connects the agent to a channel, so anyone can ask about a supplier and get an instant answer.
 
-A full breakdown of the stepup and the connection to slack will be explained later.
+A full breakdown of the set up and the connection to slack will be explained later.
 
 ## Solution Architecture
 ![Solution architecture](docs/annona_index_solution_architecture.png)
