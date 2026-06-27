@@ -6,3 +6,4 @@ crash.log
 !*.tfvars.example
 *.idea/
 **/.DS_Store
+.env

@@ -1,0 +1,4 @@
+python-dotenv~=1.2.2
+slack_bolt~=1.28.0
+mlflow
+databricks-sdk
